@@ -1,6 +1,7 @@
 import type {
   ActivityItem,
   DcaRuleDto,
+  ExecutionResult,
   ParsedIntent,
   PortfolioResponse,
   SafetyCheck,
@@ -124,6 +125,8 @@ export const api = {
     walletAddress: string;
     commandText: string;
     parsedIntent: ParsedIntent;
+    safetyResult?: SafetyCheck | null;
+    executionResult?: ExecutionResult | null;
     status: string;
     summary: string;
     simulated: boolean;

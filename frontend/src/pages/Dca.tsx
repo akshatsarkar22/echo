@@ -125,7 +125,7 @@ export function DcaPage() {
           Human cadence reminders for disciplined buys.
         </h1>
         <p className="max-w-2xl text-muted-foreground text-[0.95rem]">
-          Rules stay on-device-ish — EchoTrade persists them in SQLite linked to each wallet rehearsal key.
+          Rules stay on-device-ish — Resona persists them in SQLite linked to each wallet rehearsal key.
         </p>
       </div>
 
@@ -142,7 +142,7 @@ export function DcaPage() {
               <CardHeader className="space-y-2">
                 <p className="text-sm font-semibold">Composer</p>
                 <p className="text-muted-foreground text-xs">
-                  Pick a staple asset, nominate an amount, EchoTrade echoes the tempo.
+                  Pick a staple asset, nominate an amount, Resona echoes the tempo.
                 </p>
               </CardHeader>
               <CardContent className="grid gap-4">

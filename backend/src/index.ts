@@ -38,5 +38,5 @@ app.use(errorHandler);
 
 const port = Number(process.env.PORT) || 4000;
 app.listen(port, () => {
-  console.log(`EchoTrade API listening on http://localhost:${port}`);
+  console.log(`Resona API listening on http://localhost:${port}`);
 });

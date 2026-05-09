@@ -62,6 +62,16 @@ export const activityPostSchema = z.object({
   walletAddress: z.string().min(32).max(64),
   commandText: z.string().min(1),
   parsedIntent: parsedIntentSchema,
+  safetyResult: z
+    .object({
+      approved: z.boolean(),
+      warnings: z.array(z.string()),
+      blockedReasons: z.array(z.string()),
+      riskLevel: z.string(),
+    })
+    .nullable()
+    .optional(),
+  executionResult: z.record(z.string(), z.unknown()).nullable().optional(),
   status: z.string(),
   summary: z.string(),
   simulated: z.boolean().optional(),

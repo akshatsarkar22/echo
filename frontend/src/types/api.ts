@@ -22,6 +22,19 @@ export type SafetyCheck = {
   riskLevel: string;
 };
 
+export type ExecutionResult = {
+  simulated?: boolean;
+  status?: string;
+  estimatedOutput?: string;
+  networkFeeUsd?: number;
+  slippagePercent?: number;
+  receiptId?: string;
+  routeLabel?: string;
+  quoteExpiresAt?: string;
+  auditTrail?: string[];
+  summary?: string;
+};
+
 export type PortfolioResponse = {
   walletAddress: string;
   totalValueUsd: number;
@@ -43,6 +56,10 @@ export type SimulateTradeResponse = {
   estimatedOutput?: string;
   networkFeeUsd: number;
   slippagePercent: number;
+  receiptId: string;
+  routeLabel: string;
+  quoteExpiresAt: string;
+  auditTrail: string[];
   summary: string;
 };
 
@@ -73,6 +90,8 @@ export type ActivityItem = {
   walletAddress: string;
   commandText: string;
   parsedIntent: ParsedIntent | Record<string, unknown>;
+  safetyResult: SafetyCheck | null;
+  executionResult: ExecutionResult | Record<string, unknown> | null;
   status: string;
   summary: string;
   txSignature: string | null;

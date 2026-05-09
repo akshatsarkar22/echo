@@ -37,6 +37,8 @@ model ActivityLog {
   walletAddress String
   commandText   String
   parsedIntentJson String // JSON object
+  safetyResultJson String?
+  executionResultJson String?
   status        String   // parsed | awaiting_confirmation | simulated | declined | blocked | completed
   summary       String
   txSignature   String?

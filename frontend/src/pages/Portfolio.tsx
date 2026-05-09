@@ -163,7 +163,7 @@ export function PortfolioPage() {
                   <Separator className="my-6" />
                   <div className="flex gap-3 text-muted-foreground text-sm">
                     <ShieldCheck className="size-4 text-primary shrink-0" />{" "}
-                    EchoTrade anchors on calm defaults — escalate limits in Settings whenever you rehearse bolder flows.
+                    Resona anchors on calm defaults — escalate limits in Settings whenever you rehearse bolder flows.
                   </div>
                 </div>
               </CardContent>

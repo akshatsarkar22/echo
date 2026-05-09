@@ -61,7 +61,7 @@ export function mockPortfolio(walletAddress: string): {
   if (top.symbol === "SOL" || top.symbol === "JUP") riskTone = "moderate volatility";
   if (top.symbol === "USDC") riskTone = "lower volatility weights";
 
-  const summary = `Holdings tilt toward ${top.symbol}; overall ${riskTone} for a starter stack. EchoTrade uses demo balances — not linked to mainnet.`;
+  const summary = `Holdings tilt toward ${top.symbol}; overall ${riskTone} for a starter stack. Resona uses demo balances — not linked to mainnet.`;
 
   return {
     totalValueUsd: Math.round(totalValueUsd * 100) / 100,

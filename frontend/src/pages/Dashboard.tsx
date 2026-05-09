@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { api } from "@/lib/api";
 import type {
   ActivityItem,
+  ExecutionResult,
   ParsedIntent,
   PortfolioResponse,
   SafetyCheck,
@@ -170,12 +171,16 @@ export function DashboardPage() {
     summary: string;
     simulated: boolean;
     intent: ParsedIntent;
+    safetyResult?: SafetyCheck | null;
+    executionResult?: ExecutionResult | null;
   }) => {
     if (!address) return;
     await api.activityPost({
       walletAddress: address,
       commandText: commandText,
       parsedIntent: payload.intent,
+      safetyResult: payload.safetyResult ?? safety ?? null,
+      executionResult: payload.executionResult ?? null,
       status: payload.status,
       summary: payload.summary,
       simulated: payload.simulated,
@@ -203,6 +208,8 @@ export function DashboardPage() {
             status:
               result.status === "skipped" ? "skipped" : "simulated_trade",
             summary: result.summary,
+            safetyResult: safety,
+            executionResult: result,
           });
           break;
         }
@@ -224,6 +231,18 @@ export function DashboardPage() {
             simulated: false,
             status: "dca_saved",
             summary: `${intent.summary} — saved locally for demo.`,
+            safetyResult: safety,
+            executionResult: {
+              receiptId: `dca_${Date.now().toString(36)}`,
+              routeLabel: `USDC -> ${intent.tokenOut ?? "SOL"}`,
+              status: "saved",
+              summary: "Recurring rule saved to local SQLite.",
+              auditTrail: [
+                "Parsed recurring investment intent",
+                "Applied wallet guardrails",
+                "Saved local DCA rule",
+              ],
+            },
           });
           break;
         case "settings_max_trade":
@@ -235,6 +254,17 @@ export function DashboardPage() {
             simulated: false,
             status: "settings_updated",
             summary: `${intent.summary} — persisted`,
+            safetyResult: safety,
+            executionResult: {
+              receiptId: `settings_${Date.now().toString(36)}`,
+              status: "saved",
+              summary: "Wallet policy updated in local SQLite.",
+              auditTrail: [
+                "Parsed settings intent",
+                "Applied validation",
+                "Persisted wallet policy",
+              ],
+            },
           });
           break;
         case "portfolio":
@@ -243,6 +273,13 @@ export function DashboardPage() {
             simulated: false,
             status: "viewed_portfolio",
             summary: intent.summary,
+            safetyResult: safety,
+            executionResult: {
+              receiptId: `portfolio_${Date.now().toString(36)}`,
+              status: "viewed",
+              summary: "Demo portfolio snapshot refreshed.",
+              auditTrail: ["Parsed portfolio intent", "Loaded demo portfolio snapshot"],
+            },
           });
           break;
         default:
@@ -315,7 +352,7 @@ export function DashboardPage() {
             Voice commands that move through your Solana desk.
           </h1>
           <p className="max-w-lg text-[0.96rem] leading-6 text-muted-foreground">
-            Speak a trade, a route, or a portfolio request. EchoTrade turns it into a reviewed action with simulation-first guardrails.
+            Speak a trade, a route, or a portfolio request. Resona turns it into a reviewed action with simulation-first guardrails.
           </p>
         </div>
         <div className="grid min-w-[260px] gap-3 sm:grid-cols-2">
@@ -684,7 +721,7 @@ export function DashboardPage() {
                 </Alert>
               ) : (
                 <p className="text-muted-foreground text-xs">
-                  Streamlined confirmations in settings — EchoTrade still waits for your tap below.
+                  Streamlined confirmations in settings — Resona still waits for your tap below.
                 </p>
               )}
             </div>

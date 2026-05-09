@@ -73,14 +73,14 @@ export function AppLayout() {
         <div className="mx-auto grid w-full max-w-6xl gap-3 px-4 py-4 lg:grid-cols-[minmax(190px,0.75fr)_minmax(280px,1.05fr)_auto] lg:items-center">
           <div className="flex flex-1 items-center gap-3">
             <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-primary text-sm font-semibold text-primary-foreground shadow-[0_0_32px_rgb(31_214_184_/_0.22)]">
-              Et
+              Re
             </div>
             <div className="text-left hidden sm:block">
               <Link
                 to="/dashboard"
                 className="text-base font-semibold tracking-tight"
               >
-                EchoTrade
+                Resona
               </Link>
               <p className="text-muted-foreground text-xs">
                 Voice-first Solana practice desk

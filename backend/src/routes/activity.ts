@@ -25,6 +25,12 @@ activityRouter.get("/activity/:walletAddress", async (req, res, next) => {
         walletAddress: item.walletAddress,
         commandText: item.commandText,
         parsedIntent: JSON.parse(item.parsedIntentJson) as unknown,
+        safetyResult: item.safetyResultJson
+          ? (JSON.parse(item.safetyResultJson) as unknown)
+          : null,
+        executionResult: item.executionResultJson
+          ? (JSON.parse(item.executionResultJson) as unknown)
+          : null,
         status: item.status,
         summary: item.summary,
         txSignature: item.txSignature ?? null,
@@ -48,6 +54,14 @@ activityRouter.post("/activity", async (req, res, next) => {
         walletAddress: parsed.data.walletAddress,
         commandText: parsed.data.commandText,
         parsedIntentJson: JSON.stringify(parsed.data.parsedIntent),
+        safetyResultJson:
+          parsed.data.safetyResult === undefined
+            ? null
+            : JSON.stringify(parsed.data.safetyResult),
+        executionResultJson:
+          parsed.data.executionResult === undefined
+            ? null
+            : JSON.stringify(parsed.data.executionResult),
         status: parsed.data.status,
         summary: parsed.data.summary,
         txSignature: parsed.data.txSignature ?? null,
@@ -60,6 +74,8 @@ activityRouter.post("/activity", async (req, res, next) => {
       walletAddress: log.walletAddress,
       commandText: log.commandText,
       parsedIntent: parsed.data.parsedIntent,
+      safetyResult: parsed.data.safetyResult ?? null,
+      executionResult: parsed.data.executionResult ?? null,
       status: log.status,
       summary: log.summary,
       txSignature: log.txSignature,

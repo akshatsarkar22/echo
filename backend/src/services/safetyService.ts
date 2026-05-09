@@ -55,7 +55,7 @@ export async function runSafetyCheck(
     warnings.push("No wallet linked — safety checks are illustrative only.");
 
   warnings.push(
-    "EchoTrade does not provide financial advice — you are responsible for your own decisions."
+    "Resona does not provide financial advice — you are responsible for your own decisions."
   );
 
   if (riskLevel === "high")

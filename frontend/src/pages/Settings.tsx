@@ -204,7 +204,7 @@ export function SettingsPage() {
             <Alert>
               <AlertTitle>Operational truth</AlertTitle>
               <AlertDescription className="text-xs">
-                Empty allowlists mean EchoTrade skips extra token gating besides the built-in known list —
+                Empty allowlists mean Resona skips extra token gating besides the built-in known list —
                 tighten up when rehearsals should stay boring.
               </AlertDescription>
             </Alert>

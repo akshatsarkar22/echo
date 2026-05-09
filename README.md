@@ -1,4 +1,4 @@
-# EchoTrade MVP
+# Resona MVP
 
 Voice-first **Solana rehearsal desk**: connect Phantom, speak or type natural commands, review parsed intent, pass safety checks, confirm explicitly, and record **simulated** trades plus recurring “DCA” rules in SQLite.
 
