@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model UserSettings {
+  id                  String   @id @default(cuid())
+  walletAddress       String   @unique
+  maxTradeUsd         Float    @default(25)
+  requireConfirmation Boolean  @default(true)
+  allowedTokensJson   String   @default("[\"SOL\",\"USDC\",\"JUP\",\"BONK\"]") // stored as JSON array string
+  blockedTokensJson   String   @default("[]")
+  riskLevel           String   @default("medium")
+  simulationMode      Boolean  @default(true)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model DcaRule {
+  id            String    @id @default(cuid())
+  walletAddress String
+  tokenSymbol   String
+  amountUsd     Float
+  frequency     String
+  active        Boolean   @default(true)
+  nextRunAt     DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model ActivityLog {
+  id            String   @id @default(cuid())
+  walletAddress String
+  commandText   String
+  parsedIntentJson String // JSON object
+  status        String   // parsed | awaiting_confirmation | simulated | declined | blocked | completed
+  summary       String
+  txSignature   String?
+  simulated     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+}
