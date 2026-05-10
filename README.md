@@ -66,3 +66,4 @@ cd ../frontend && npm run build
 - Portfolio balances are **mock data**; the API flags `isDemoData`.
 - Speech recognition depends on browser support (Chrome works well; Firefox may be limited).
 - Keep `simulationMode` on in Settings for the intended beginner-friendly experience.
+# Resona
